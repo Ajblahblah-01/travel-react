@@ -1,17 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import header_img from './icons/header_earth.png'
+import Card from "./card.js"
+import data from "./data.js"
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+
+
+function Header(){
+  return (
+    <div className = "header">
+      <img src={header_img} alt="" /> 
+      <h1>my travel journal</h1>
+
+    </div>
+  )
+}
+
+function Main(){
+  const cards = data.map(item => {
+    return (
+      <Card 
+        key = {item.id} 
+        {...item}
+      />
+    )
+  })
+  return (
+    <div className="main">
+      <Header />
+      <section className="footer">
+        {cards}
+      </section>
+      
+    </div>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <div>
+    <Main />
+  </div>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
